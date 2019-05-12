@@ -65,6 +65,7 @@ class Board
 			return true if grid[8].symbol == grid[2].symbol && grid[8] == grid[5].symbol		
 		else
 			return false
+		end
 	end
 
 	def board_full?
@@ -74,19 +75,39 @@ end
 
 class Game
 
-	def initialize(player1, player2)
-		@player1 = Player.new("Player 1", "X")
-		@player2 = Player.new("Player 2", "O")
+	def initialize(player1_name, player2_name)
+		@player1 = Player.new(player1_name, "X")
+		@player2 = Player.new(player2_name, "O")
 		@current_player = @player1
 		@game_board = Board.new
 	end
 
 	def play
-		@game_board.print_board
+		puts "Squares are numbered 1 through 9 starting at the upper left corner and lined horizontally."
+		until @game_board.three_in_a_row? || @game_board.board_full?
+			@game_board.print_board
+			puts "#{@current_player}, select a square."
+			take_turn
+		end
+	end
+
+	private
+
+	def take_turn
+		input = gets.chomp
+		puts input
+	end
+
+	def get_move
+		loop do
+			input = gets.chomp
+			return input.to_i if input.to_i.between(1,9)
+			puts "Invalid input, please enter an integer between 1 and 9."
+		end
 	end
 end
 
 
-
 #TEST JUNK
-test_board = Board.new
+test_game = Game.new("Player 1","Player 2")
+game.play
