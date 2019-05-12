@@ -1,1 +1,1 @@
-This will be a tic-tac-toe game written in Ruby and playable on the command line.
+This is be a tic-tac-toe game written in Ruby and playable on the command line. I made it as part of the Ruby curriculum of The Odin Project.
