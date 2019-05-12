@@ -98,6 +98,9 @@ class Game
 			take_turn
 			switch_player
 		end
+		@game_board.print_board
+		declare_winner if @game_board.three_in_a_row?
+		declare_draw unless @game_board.three_in_a_row?
 	end
 
 	private
@@ -125,6 +128,17 @@ class Game
 	def switch_player
 		@current_player == @player1 ? @current_player = @player2 :
 			@current_player = @player1
+	end
+
+	def declare_winner
+		# Winner will always be the player who just moved.
+		# So switching makes @current_player equal to the winner.
+		switch_player 
+		puts "#{@current_player} wins!"
+	end
+
+	def declare_draw
+		puts "Nobody got three in a row. This game is a draw."
 	end
 end
 
