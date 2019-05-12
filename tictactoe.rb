@@ -52,6 +52,21 @@ class Board
 	end
 end
 
+class Game
+
+	def initialize(player1, player2)
+		@player1 = Player.new("Player 1", "X")
+		@player2 = Player.new("Player 2", "O")
+		@player1_turn = true
+		@game_board = Board.new
+	end
+
+	def play
+	end
+end
+
+
+
 #TEST JUNK
 test_board = Board.new
 test_board.update_grid(4,'X')
