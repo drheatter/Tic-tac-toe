@@ -50,6 +50,22 @@ class Board
 		puts "-|-|-"
 		puts "#{grid[6]}|#{grid[7]}|#{grid[8]}"
 	end
+
+	def three_in_a_row?
+		if grid[0].used
+			return true if grid[0].symbol == grid[1].symbol && grid[0] == grid[2].symbol
+			return true if grid[0].symbol == grid[3].symbol && grid[0] == grid[6].symbol
+			return true if grid[0].symbol == grid[4].symbol && grid[0] == grid[8].symbol
+		elsif grid[4].used
+			return true if grid[4].symbol == grid[1].symbol && grid[4] == grid[7].symbol
+			return true if grid[4].symbol == grid[3].symbol && grid[4] == grid[5].symbol
+			return true if grid[4].symbol == grid[6].symbol && grid[4] == grid[2].symbol
+		elsif grid[7].used
+			return true if grid[8].symbol == grid[6].symbol && grid[8] == grid[7].symbol
+			return true if grid[8].symbol == grid[2].symbol && grid[8] == grid[5].symbol		
+		else
+			return false
+	end
 end
 
 class Game
@@ -57,11 +73,12 @@ class Game
 	def initialize(player1, player2)
 		@player1 = Player.new("Player 1", "X")
 		@player2 = Player.new("Player 2", "O")
-		@player1_turn = true
+		@current_player = @player1
 		@game_board = Board.new
 	end
 
 	def play
+		@game_board.print_grid
 	end
 end
 
