@@ -53,16 +53,24 @@ class Board
 
 	def three_in_a_row?
 		if grid[0].used
-			return true if grid[0].symbol == grid[1].symbol && grid[0] == grid[2].symbol
-			return true if grid[0].symbol == grid[3].symbol && grid[0] == grid[6].symbol
-			return true if grid[0].symbol == grid[4].symbol && grid[0] == grid[8].symbol
+			return true if grid[0].symbol == grid[1].symbol && 
+				grid[0].symbol == grid[2].symbol
+			return true if grid[0].symbol == grid[3].symbol &&
+				grid[0].symbol == grid[6].symbol
+			return true if grid[0].symbol == grid[4].symbol &&
+				grid[0].symbol == grid[8].symbol
 		elsif grid[4].used
-			return true if grid[4].symbol == grid[1].symbol && grid[4] == grid[7].symbol
-			return true if grid[4].symbol == grid[3].symbol && grid[4] == grid[5].symbol
-			return true if grid[4].symbol == grid[6].symbol && grid[4] == grid[2].symbol
+			return true if grid[4].symbol == grid[1].symbol &&
+				grid[4].symbol == grid[7].symbol
+			return true if grid[4].symbol == grid[3].symbol &&
+				grid[4].symbol == grid[5].symbol
+			return true if grid[4].symbol == grid[6].symbol &&
+				grid[4].symbol == grid[2].symbol
 		elsif grid[7].used
-			return true if grid[8].symbol == grid[6].symbol && grid[8] == grid[7].symbol
-			return true if grid[8].symbol == grid[2].symbol && grid[8] == grid[5].symbol		
+			return true if grid[8].symbol == grid[6].symbol &&
+				grid[8].symbol == grid[7].symbol
+			return true if grid[8].symbol == grid[2].symbol &&
+				grid[8].symbol == grid[5].symbol		
 		else
 			return false
 		end
@@ -88,6 +96,7 @@ class Game
 			@game_board.print_board
 			puts "#{@current_player}, select a square."
 			take_turn
+			switch_player
 		end
 	end
 
@@ -111,6 +120,11 @@ class Game
 			return input.to_i if input.to_i.between?(1,9)
 			puts "Invalid input, please enter an integer between 1 and 9."
 		end
+	end
+
+	def switch_player
+		@current_player == @player1 ? @current_player = @player2 :
+			@current_player = @player1
 	end
 end
 
