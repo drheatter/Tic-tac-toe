@@ -38,12 +38,12 @@ class Board
 		9.times { @grid.push(Cell.new) }
 	end
 
-	def update_grid(square, symbol)
+	def update_board(square, symbol)
 		return if @grid[square].used
 		@grid[square].fill_cell(symbol)
 	end
 
-	def print_grid
+	def print_board
 		puts "#{grid[0]}|#{grid[1]}|#{grid[2]}"
 		puts "-|-|-"
 		puts "#{grid[3]}|#{grid[4]}|#{grid[5]}"
@@ -66,6 +66,10 @@ class Board
 		else
 			return false
 	end
+
+	def board_full?
+		return !grid.any? {|cell| cell.used == false}
+	end
 end
 
 class Game
@@ -78,7 +82,7 @@ class Game
 	end
 
 	def play
-		@game_board.print_grid
+		@game_board.print_board
 	end
 end
 
@@ -86,7 +90,3 @@ end
 
 #TEST JUNK
 test_board = Board.new
-test_board.update_grid(4,'X')
-test_board.update_grid(1,'O')
-test_board.update_grid(6,'X')
-test_board.print_grid
