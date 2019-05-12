@@ -94,14 +94,21 @@ class Game
 	private
 
 	def take_turn
-		input = gets.chomp
-		puts input
+		loop do
+			square_number = get_move
+			if @game_board.grid[square_number - 1].used
+				puts "Square #{square_number} has been claimed, please pick a different square."
+			else
+				@game_board.update_board(square_number - 1, @current_player.symbol)
+				return
+			end
+		end
 	end
 
 	def get_move
 		loop do
 			input = gets.chomp
-			return input.to_i if input.to_i.between(1,9)
+			return input.to_i if input.to_i.between?(1,9)
 			puts "Invalid input, please enter an integer between 1 and 9."
 		end
 	end
@@ -110,4 +117,4 @@ end
 
 #TEST JUNK
 test_game = Game.new("Player 1","Player 2")
-game.play
+test_game.play
