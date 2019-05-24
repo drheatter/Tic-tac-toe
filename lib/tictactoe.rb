@@ -143,6 +143,6 @@ class Game
 end
 
 
-#TEST JUNK
-test_game = Game.new("Player 1","Player 2")
-test_game.play
+#Create and play game.
+#test_game = Game.new("Player 1","Player 2")
+#test_game.play
